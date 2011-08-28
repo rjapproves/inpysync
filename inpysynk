@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+'''
+inpysync is a simple to use tool for Systems Administrators
+to use to keep 1 or more nodes in sync with a master node.
+inpysync runs on the master using inotify and rsync
+
+Typical usage would be to have inpysync running on a master
+webnode and have it sync changes to all slave nodes in the 
+cluster. Thanks to the way rsync works you can have this
+happen over an encrypted connection via ssh. If using the
+rsync + ssh method make sure ssh keys are in place and that
+the user running inpysync has permissions on the slave nodes
+to write the changes to disk.
+
+usage: 
+inpysync --config=/path/to/config.ini
+inpysync --watch=/path/to/watch --rec=true --desthost=10.1.2.3 --destpath=/path/on/dest
+
+
+'''
+
+__author__ = "Michael Rice"
+__version__ = "0.1"
+__license__ = "BSD"
+__date__ = "2011-08-28"
+
+import pyinotify
+import ConfigParser
+import os
+from optparse import OptionParser
+
