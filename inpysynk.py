@@ -15,7 +15,6 @@ to write the changes to disk.
 
 usage: 
 inpysync --config=/path/to/config.ini
-inpysync --watch=/path/to/watch --rec=true --desthost=10.1.2.3 --destpath=/path/on/dest
 
 
 '''
@@ -25,8 +24,36 @@ __version__ = "0.1"
 __license__ = "BSD"
 __date__ = "2011-08-28"
 
+import inpycfgparse 
 import pyinotify
-import ConfigParser
 import os
-from optparse import OptionParser
 
+#CFG_PATH = '/usr/local/etc/inpysync/config.ini'
+CFG_PATH = 'example.ini'
+
+class 
+
+def setup_watch(sections):
+  #loop through sections
+  print len(sections)
+  for k,v in sections.iteritems():
+    syncmd = v.__dict__['syncmd']
+    watchpath = v.__dict__['locpath']
+    destpath = v.__dict__['destpath']
+    desthost = v.__dict__['desthost']
+    rec = v.__dict__['recurse']
+
+    wm = pyinotify.WatchManager()
+    notifier = pyinotify.Notifier(wm, default_proc_fun=
+
+    #print k, "=>", v.__dict__
+    #for opt,val in v.__dict__.iteritems():
+      #print opt, val
+  #for a thread for each one of the 
+  #sections
+
+
+if __name__ == "__main__":
+  cfg = inpycfgparse.ParseCfg(CFG_PATH)
+  sections = cfg.get_sections()
+  setup_watch(sections)
